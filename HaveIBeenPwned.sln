@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HaveIBeenPwned.Password", "HaveIBeenPwned.Password\HaveIBeenPwned.Password.csproj", "{FBF76D76-DBED-4D43-9C80-44F901668D89}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HaveIBeenTested.Password.Pwned", "HaveIBeenTested.Password.Pwned\HaveIBeenTested.Password.Pwned.csproj", "{FC654AED-AEC5-440A-803D-A73F1BA3DCC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBF76D76-DBED-4D43-9C80-44F901668D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF76D76-DBED-4D43-9C80-44F901668D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF76D76-DBED-4D43-9C80-44F901668D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF76D76-DBED-4D43-9C80-44F901668D89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC654AED-AEC5-440A-803D-A73F1BA3DCC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC654AED-AEC5-440A-803D-A73F1BA3DCC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC654AED-AEC5-440A-803D-A73F1BA3DCC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC654AED-AEC5-440A-803D-A73F1BA3DCC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BFFB980-F1AD-485F-9D4D-4F8C6F2C7FD5}
+	EndGlobalSection
+EndGlobal

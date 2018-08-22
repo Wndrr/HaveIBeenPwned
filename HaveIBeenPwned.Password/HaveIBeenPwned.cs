@@ -11,14 +11,25 @@ namespace HaveIBeenPwned.Password
 {
     public class HaveIBeenPwned
     {
-        private readonly string _apiAddress;
-
         /// <summary>
-        /// Initializes an instance of the <see cref="HaveIBeenPwned"/> class
+        /// Determines how many times a password must have been leaked for it to be considered pwned
         /// </summary>
-        public HaveIBeenPwned()
+        private readonly int _numberOfLeaksForPwn = 1;
+        private readonly string _apiAddress = "https://api.pwnedpasswords.com/range";
+
+        #region CONSTRUCTORS
+        
+        /// <summary>
+        /// Initializes an instance of the <see cref="T:HaveIBeenPwned.Password.HaveIBeenPwned" /> class
+        /// </summary>
+        /// <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        /// <param name="numberOfLeaksForPwn">Used by the <see cref="M:HaveIBeenPwned.Password.HaveIBeenPwned.IsPasswordPwned(System.String)" /> and <see cref="!:GetPwned" />.</param>
+        public HaveIBeenPwned(int numberOfLeaksForPwn = 1)
         {
-            _apiAddress = "https://api.pwnedpasswords.com/range";
+            if(numberOfLeaksForPwn < 1 )
+                throw new ArgumentOutOfRangeException($"The {nameof(numberOfLeaksForPwn)} parameter's value can't be under 0");
+
+            _numberOfLeaksForPwn = numberOfLeaksForPwn;
         }
 
         /// <summary>
@@ -33,6 +44,23 @@ namespace HaveIBeenPwned.Password
 
             _apiAddress = apiAddress.TrimEnd('/');
         }
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="HaveIBeenPwned"/> class
+        /// </summary>
+        /// <exception cref="UriFormatException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <param name="apiAddress">The rest endpoint to use for the api calls</param>
+        /// <param name="numberOfLeaksForPwn">Used by the <see cref="IsPasswordPwned"/> and <see cref="GetPwned"/>.</param>
+        public HaveIBeenPwned(string apiAddress, int numberOfLeaksForPwn) : this(apiAddress)
+        {
+            if (numberOfLeaksForPwn < 1)
+                throw new ArgumentOutOfRangeException($"The {nameof(numberOfLeaksForPwn)} parameter's value can't be under 0");
+
+            _numberOfLeaksForPwn = numberOfLeaksForPwn;
+        }
+        
+        #endregion
 
         /// <summary>
         /// Calls the HaveIBeenPwned web API with the provided password and returns the number of times it was leaked
@@ -86,7 +114,8 @@ namespace HaveIBeenPwned.Password
         /// <returns>Whether the password was found at all in the database</returns>
         public bool IsPasswordPwned(string plainTextPassword)
         {
-            return GetNumberOfTimesPasswordPwned(plainTextPassword) > 0;
+            var numberOfTimesPasswordPwned = GetNumberOfTimesPasswordPwned(plainTextPassword);
+            return numberOfTimesPasswordPwned >= _numberOfLeaksForPwn;
         }
 
         /// <summary>

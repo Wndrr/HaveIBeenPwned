@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -84,6 +87,30 @@ namespace HaveIBeenPwned.Password
         public bool IsPasswordPwned(string plainTextPassword)
         {
             return GetNumberOfTimesPasswordPwned(plainTextPassword) > 0;
+        }
+
+        /// <summary>
+        /// Calls the HaveIBeenPwned web API for each provided password and returns the list of password that were leaked
+        /// </summary>
+        /// <exception cref="WebException">Unknown host</exception>
+        /// <param name="passwords">The passwords to test</param>
+        /// <returns></returns>
+        public List<string> GetPwned(params string[] passwords)
+        {
+            var pwned = passwords.Where(IsPasswordPwned);
+
+            return pwned.ToList();
+        }
+
+        /// <summary>
+        /// Calls the HaveIBeenPwned web API for each provided password and returns the list of password that were leaked
+        /// </summary>
+        /// <exception cref="WebException">Unknown host</exception>
+        /// <param name="passwords">The passwords to test</param>
+        /// <returns></returns>
+        public List<string> GetPwned(IEnumerable<string> passwords)
+        {
+            return GetPwned(passwords.ToArray());
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Xunit;
 
 namespace HaveIBeenTested.Password.Pwned
@@ -17,6 +18,34 @@ namespace HaveIBeenTested.Password.Pwned
             var isPwnedResult = pwned.IsPasswordPwned(password);
 
             Assert.Equal(isPwned, isPwnedResult);
+
+        }
+
+        [Theory]
+        [InlineData(2, "password", "12345", "sjgfsdkvkjcxfbxkcvbksjdfbvc", "skeftbgfdmlh!:h d!;,:fgg352")]
+        [InlineData(0, "thisisaverylongandcomplexpasswordthatshouldwork")]
+        [InlineData(1, "Password-1")]
+        public void GetPwned_array(int expectedNumberOfmatch, params string[] passwords)
+        {
+            var pwned = new HaveIBeenPwned.Password.HaveIBeenPwned();
+
+            var pwnedPasswords = pwned.GetPwned(passwords);
+
+            Assert.Equal(expectedNumberOfmatch, pwnedPasswords.Count);
+
+        }
+
+        [Theory]
+        [InlineData(2, "password", "12345", "sjgfsdkvkjcxfbxkcvbksjdfbvc", "skeftbgfdmlh!:h d!;,:fgg352")]
+        [InlineData(0, "thisisaverylongandcomplexpasswordthatshouldwork")]
+        [InlineData(1, "Password-1")]
+        public void GetPwned_enumerable(int expectedNumberOfmatch, params string[] passwords)
+        {
+            var pwned = new HaveIBeenPwned.Password.HaveIBeenPwned();
+
+            var pwnedPasswords = pwned.GetPwned(passwords.ToList());
+
+            Assert.Equal(expectedNumberOfmatch, pwnedPasswords.Count);
 
         }
 

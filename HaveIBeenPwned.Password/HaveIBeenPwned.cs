@@ -119,7 +119,7 @@ namespace HaveIBeenPwned.Password
         }
 
         /// <summary>
-        /// Calls the HaveIBeenPwned web API for each provided password and returns the list of password that were leaked
+        /// Calls the HaveIBeenPwned web API for each provided password and returns the list of passwords that were leaked
         /// </summary>
         /// <exception cref="WebException">Unknown host</exception>
         /// <param name="passwords">The passwords to test</param>

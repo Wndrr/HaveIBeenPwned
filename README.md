@@ -2,6 +2,8 @@
 A C#.NET Standard 2.0 wrapper for the [haveibeenpwned](https://haveibeenpwned.com/API/v2#PwnedPasswords) password REST API
 
 ## Compatibility
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FWndrr%2FHaveIBeenPwned.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FWndrr%2FHaveIBeenPwned?ref=badge_shield)
+
 
 This library targets .NET Standard 2.0 which makes it compatible with both .NET Core 2.0 and above aswell as .NET Framework 4.6.1 and above. See the [compatibility page](http://immo.landwerth.net/netstandard-versions/#) for a more exhaustive list of compatible frameworks.
 
@@ -64,3 +66,7 @@ var pwnedArray = GetPwned(rawPass); //string[]
 var pwnedIEnumerable = GetPwned(rawPass.ToList()); // IEnumerable<string>
 var pwnedParams = GetPwned("poopPassword_1", "passPoopWord_2", "3_3", "123456" /*, [...] */); // params string
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FWndrr%2FHaveIBeenPwned.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FWndrr%2FHaveIBeenPwned?ref=badge_large)
